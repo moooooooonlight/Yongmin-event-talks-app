@@ -1,0 +1,282 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Technical Talks Event Schedule</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 0; padding: 20px; background-color: #f4f4f4; color: #333; }
+        header { text-align: center; margin-bottom: 40px; }
+        h1 { color: #0056b3; }
+        .search-container { margin-bottom: 30px; text-align: center; }
+        .search-container input { padding: 10px; border: 1px solid #ddd; border-radius: 4px; width: 300px; margin-right: 10px; }
+        .search-container button { padding: 10px 15px; background-color: #007bff; color: white; border: none; border-radius: 4px; cursor: pointer; }
+        .search-container button:hover { background-color: #0056b3; }
+        .schedule-container { max-width: 900px; margin: 0 auto; background-color: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+        .talk-slot { display: flex; border-bottom: 1px solid #eee; padding: 15px 0; align-items: flex-start; }
+        .talk-slot:last-child { border-bottom: none; }
+        .talk-slot .time { font-weight: bold; width: 120px; flex-shrink: 0; color: #555; }
+        .talk-slot .details { flex-grow: 1; }
+        .talk-slot h3 { margin-top: 0; margin-bottom: 5px; color: #0056b3; }
+        .talk-slot .speakers { font-style: italic; color: #666; margin-bottom: 5px; }
+        .talk-slot .category { background-color: #e9ecef; padding: 3px 8px; border-radius: 3px; font-size: 0.8em; display: inline-block; margin-bottom: 5px; color: #495057; }
+        .talk-slot.lunch-break { background-color: #fff3cd; border-color: #ffeeba; }
+        .talk-slot.lunch-break h3 { color: #856404; }
+        footer { text-align: center; margin-top: 40px; color: #777; font-size: 0.9em; }
+        .hidden { display: none; }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Technical Talks Event Schedule</h1>
+        <p>A full day of insightful technical discussions.</p>
+    </header>
+
+    <main>
+        <div class="search-container">
+            <input type="text" id="categorySearch" placeholder="Search by category (e.g., Web Development)">
+            <button id="searchButton">Search</button>
+            <button id="resetButton">Reset</button>
+        </div>
+
+        <div id="schedule" class="schedule-container">
+            
+      <div class="talk-slot" data-category="javascript frontend">
+        <div class="time">10:00 AM - 11:00 AM</div>
+        <div class="details">
+          <h3>Understanding Asynchronous JavaScript</h3>
+          <p class="speakers">Alice Johnson</p>
+          <p class="category">JavaScript, Frontend</p>
+          <p class="description">A deep dive into Promises, async/await, and event loops.</p>
+        </div>
+      </div>
+    
+      <div class="talk-slot" data-category="node.js backend api">
+        <div class="time">11:10 AM - 12:10 PM</div>
+        <div class="details">
+          <h3>Building Scalable REST APIs with Node.js</h3>
+          <p class="speakers">Bob Williams & Carol Davis</p>
+          <p class="category">Node.js, Backend, API</p>
+          <p class="description">Best practices for designing and implementing high-performance Node.js APIs.</p>
+        </div>
+      </div>
+    
+      <div class="talk-slot" data-category="devops containers">
+        <div class="time">12:20 PM - 01:20 PM</div>
+        <div class="details">
+          <h3>Introduction to Containerization with Docker</h3>
+          <p class="speakers">David Lee</p>
+          <p class="category">DevOps, Containers</p>
+          <p class="description">Learn the fundamentals of Docker and how to containerize your applications.</p>
+        </div>
+      </div>
+    
+        <div class="talk-slot lunch-break">
+          <div class="time">1:00 PM - 2:00 PM</div>
+          <div class="details">
+            <h3>Lunch Break</h3>
+          </div>
+        </div>
+      
+      <div class="talk-slot" data-category="css frontend design">
+        <div class="time">02:00 PM - 03:00 PM</div>
+        <div class="details">
+          <h3>Modern CSS Techniques for Responsive Design</h3>
+          <p class="speakers">Eve Taylor</p>
+          <p class="category">CSS, Frontend, Design</p>
+          <p class="description">Explore Flexbox, Grid, and other techniques for creating beautiful, responsive layouts.</p>
+        </div>
+      </div>
+    
+      <div class="talk-slot" data-category="testing javascript">
+        <div class="time">03:10 PM - 04:10 PM</div>
+        <div class="details">
+          <h3>Testing Strategies for JavaScript Applications</h3>
+          <p class="speakers">Frank White</p>
+          <p class="category">Testing, JavaScript</p>
+          <p class="description">Unit, integration, and end-to-end testing with popular frameworks.</p>
+        </div>
+      </div>
+    
+      <div class="talk-slot" data-category="databases backend">
+        <div class="time">04:20 PM - 05:20 PM</div>
+        <div class="details">
+          <h3>Database Performance Optimization for SQL & NoSQL</h3>
+          <p class="speakers">Grace Kim & Henry Adams</p>
+          <p class="category">Databases, Backend</p>
+          <p class="description">Tips and tricks to get the most out of your database systems.</p>
+        </div>
+      </div>
+    
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Technical Talks Event. All rights reserved.</p>
+    </footer>
+
+    <script>
+        const allTalks = [
+  {
+    "title": "Understanding Asynchronous JavaScript",
+    "speakers": [
+      "Alice Johnson"
+    ],
+    "category": [
+      "JavaScript",
+      "Frontend"
+    ],
+    "duration": 60,
+    "description": "A deep dive into Promises, async/await, and event loops."
+  },
+  {
+    "title": "Building Scalable REST APIs with Node.js",
+    "speakers": [
+      "Bob Williams",
+      "Carol Davis"
+    ],
+    "category": [
+      "Node.js",
+      "Backend",
+      "API"
+    ],
+    "duration": 60,
+    "description": "Best practices for designing and implementing high-performance Node.js APIs."
+  },
+  {
+    "title": "Introduction to Containerization with Docker",
+    "speakers": [
+      "David Lee"
+    ],
+    "category": [
+      "DevOps",
+      "Containers"
+    ],
+    "duration": 60,
+    "description": "Learn the fundamentals of Docker and how to containerize your applications."
+  },
+  {
+    "title": "Modern CSS Techniques for Responsive Design",
+    "speakers": [
+      "Eve Taylor"
+    ],
+    "category": [
+      "CSS",
+      "Frontend",
+      "Design"
+    ],
+    "duration": 60,
+    "description": "Explore Flexbox, Grid, and other techniques for creating beautiful, responsive layouts."
+  },
+  {
+    "title": "Testing Strategies for JavaScript Applications",
+    "speakers": [
+      "Frank White"
+    ],
+    "category": [
+      "Testing",
+      "JavaScript"
+    ],
+    "duration": 60,
+    "description": "Unit, integration, and end-to-end testing with popular frameworks."
+  },
+  {
+    "title": "Database Performance Optimization for SQL & NoSQL",
+    "speakers": [
+      "Grace Kim",
+      "Henry Adams"
+    ],
+    "category": [
+      "Databases",
+      "Backend"
+    ],
+    "duration": 60,
+    "description": "Tips and tricks to get the most out of your database systems."
+  }
+]; // Embed talk data
+        const scheduleContainer = document.getElementById('schedule');
+        const searchInput = document.getElementById('categorySearch');
+        const searchButton = document.getElementById('searchButton');
+        const resetButton = document.getElementById('resetButton');
+
+        function generateTalkSlotHTML(talk, startTime, endTime, isLunch = false) {
+            if (isLunch) {
+                return '<div class="talk-slot lunch-break">' +
+                       '<div class="time">' + startTime + ' - ' + endTime + '</div>' +
+                       '<div class="details">' +
+                       '<h3>Lunch Break</h3>' +
+                       '</div>' +
+                       '</div>';
+            } else {
+                return '<div class="talk-slot" data-category="' + talk.category.join(' ').toLowerCase() + '">' +
+                       '<div class="time">' + startTime + ' - ' + endTime + '</div>' +
+                       '<div class="details">' +
+                       '<h3>' + talk.title + '</h3>' +
+                       '<p class="speakers">' + talk.speakers.join(' & ') + '</p>' +
+                       '<p class="category">' + talk.category.join(', ') + '</p>' +
+                       '<p class="description">' + talk.description + '</p>' +
+                       '</div>' +
+                       '</div>';
+            }
+        }
+
+        function renderSchedule(talksToRender) {
+            let currentDisplayTime = new Date();
+            currentDisplayTime.setHours(10, 0, 0, 0); // Start at 10:00 AM
+
+            let htmlContent = '';
+            let talkDisplayCounter = 0;
+
+            for (let i = 0; i < allTalks.length; i++) {
+                const talk = allTalks[i];
+                const isTalkFiltered = !talksToRender.includes(talk);
+
+                // Add 10-minute transition if it's not the first talk and not before lunch
+                if (i > 0 && talkDisplayCounter !== 3) {
+                    currentDisplayTime.setMinutes(currentDisplayTime.getMinutes() + 10);
+                }
+
+                // Add lunch break after 3rd talk
+                if (talkDisplayCounter === 3) {
+                    // Only display lunch break if any talks are visible after it
+                    const remainingTalksVisible = talksToRender.slice(i).some(t => allTalks.includes(t));
+                    if (!isTalkFiltered || remainingTalksVisible) {
+                         htmlContent += generateTalkSlotHTML(null, '1:00 PM', '2:00 PM', true);
+                    }
+                    currentDisplayTime.setHours(14, 0, 0, 0); // Resume at 2:00 PM
+                }
+                
+                if (!isTalkFiltered) {
+                    const startTime = currentDisplayTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+                    currentDisplayTime.setMinutes(currentDisplayTime.getMinutes() + talk.duration);
+                    const endTime = currentDisplayTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+                    htmlContent += generateTalkSlotHTML(talk, startTime, endTime);
+                } else {
+                    // If talk is filtered, still advance time to maintain correct schedule for visible talks
+                    currentDisplayTime.setMinutes(currentDisplayTime.getMinutes() + talk.duration);
+                }
+                
+                talkDisplayCounter++;
+            }
+            scheduleContainer.innerHTML = htmlContent;
+        }
+
+        searchButton.addEventListener('click', () => {
+            const query = searchInput.value.toLowerCase();
+            const filteredTalks = allTalks.filter(talk =>
+                talk.category.some(cat => cat.toLowerCase().includes(query))
+            );
+            renderSchedule(filteredTalks);
+        });
+
+        resetButton.addEventListener('click', () => {
+            searchInput.value = '';
+            renderSchedule(allTalks);
+        });
+
+        // Initial render
+        renderSchedule(allTalks);
+    </script>
+</body>
+</html>
